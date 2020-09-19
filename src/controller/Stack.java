@@ -21,7 +21,7 @@ public class Stack {
 	}
 	
 	public void removeItem() {
-		/*
+		/**
 		 * remover item da pilha
 		 */
 		String itemRemovido;
@@ -43,8 +43,7 @@ public class Stack {
 				System.out.println(itemRemovido);
 			}						
 		}
-	}
-	
+	}	
 	
 	public void showStack() {
 		/**
