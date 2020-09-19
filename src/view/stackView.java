@@ -3,7 +3,9 @@ package view;
 public class stackView {
 	
 	public stackView() {
-		//constructor
+		/*
+		 * representação utilizando window builder ou joptionpane 
+		 */
 	}
 	
 }
