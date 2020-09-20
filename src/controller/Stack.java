@@ -3,6 +3,8 @@ package controller;
 public class Stack {
 	/**
 	 *  this class implements a stack based on dynamic memory allocation
+	 *  properties - int stackItem, Stack belowStack, int stackLength
+	 *  methods - pushItem(), popItem(), rangeStack(), showStack()
 	 */		
 	private int stackItem;
 	private Stack belowStack;	

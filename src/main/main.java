@@ -3,6 +3,6 @@ import controller.Stack;
 
 public class main {	
 	public static void main(String[] args) {
-		Stack novo = new Stack(); //test stack		
+		Stack novo = new Stack(); //test stack	
 	}
 }
