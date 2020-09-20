@@ -3,39 +3,39 @@ package controller;
 public class Stack {
 	
 	private int stackItem;
-	private Stack abaixo;
+	private Stack belowStack;
 	
 	public Stack (int stackItem) {
 		this.stackItem = stackItem;
-		this.abaixo = null;
+		this.belowStack = null;
 	}
 	
-	public void addItem(int stackItem) {		
+	public void pushItem(int stackItem) {		
 		/**
-		 * adicionar item à pilha
+		 * add item to stack
 		 */
 		Stack no = new Stack(this.stackItem);
-		no.abaixo = this.abaixo;
+		no.belowStack = this.belowStack;
 		this.stackItem = stackItem;			
-		this.abaixo = no;	
+		this.belowStack = no;	
 	}
 	
-	public void removeItem() {
+	public void popItem() {
 		/**
-		 * remover item da pilha
+		 * remove item from stack
 		 */
 		String itemRemovido;
 		try {
 			itemRemovido = "o item " + Integer.toString(this.stackItem) + " foi removido";
-			this.stackItem = this.abaixo.stackItem;
-			this.abaixo  =this.abaixo.abaixo;
+			this.stackItem = this.belowStack.stackItem;
+			this.belowStack  =this.belowStack.belowStack;
 			System.out.println(itemRemovido);		}
 		
 		catch(NullPointerException e) {
 			try {
 				itemRemovido = "o item " + Integer.toString(this.stackItem) +" foi removido\nLista Vazia";
 				this.stackItem = (Integer) null;
-				this.abaixo = null;		
+				this.belowStack = null;		
 				System.out.println(itemRemovido);				
 			}
 			catch(NullPointerException f) {
@@ -47,12 +47,12 @@ public class Stack {
 	
 	public void showStack() {
 		/**
-		 * exibir todos os items da pilha
+		 * show all items on stack
 		 */
 		Stack no = this;
-		while (no.abaixo != null) {
+		while (no.belowStack != null) {
 			System.out.println(no.stackItem);
-			no = no.abaixo;
+			no = no.belowStack;
 		}			
 	}
 }
