@@ -1,5 +1,8 @@
 package controller;
 
+/*utilizar um topo static pode ser melhor*/
+
+
 public class Stack {
 	/**
 	 *  this class implements a stack based on dynamic memory allocation
@@ -84,7 +87,14 @@ public class Stack {
 		/**
 		 * return stack's top element
 		 */
-		return this.stackItem;
+		try {
+			return this.stackItem;			
+		}
+		catch(Exception e) {
+			System.out.println("invalid operation, empty stack");
+			return (Integer) null;
+		}
+
 	}
 	
 	public int rangeStack() {
