@@ -3,12 +3,21 @@ package controller;
 public class Stack {
 	/**
 	 *  this class implements a stack based on dynamic memory allocation
-	 */
-	
+	 */		
 	private int stackItem;
-	private Stack belowStack;
+	private Stack belowStack;	
+	private int stackLength;
+
+	public Stack() {
+		/**
+		 * constructor
+		 */
+	}	
 	
 	public Stack (int stackItem) {
+		/**
+		 * constructor
+		 */
 		this.stackItem = stackItem;
 		this.belowStack = null;
 	}
@@ -17,10 +26,17 @@ public class Stack {
 		/**
 		 * add item to stack
 		 */
-		Stack no = new Stack(this.stackItem);
-		no.belowStack = this.belowStack;
-		this.stackItem = stackItem;			
-		this.belowStack = no;	
+		if (this.stackLength > 0) {
+			Stack no = new Stack(this.stackItem);			
+			no.belowStack = this.belowStack;
+			this.stackItem = stackItem;			
+			this.belowStack = no;
+			this.stackLength += 1;
+		}
+		else {
+			this.stackItem = stackItem;
+			this.stackLength += 1;
+		}
 	}
 	
 	public void popItem() {
@@ -32,6 +48,7 @@ public class Stack {
 			removedItem = " item " + Integer.toString(this.stackItem) + " was removed";
 			this.stackItem = this.belowStack.stackItem;
 			this.belowStack  =this.belowStack.belowStack;
+			this.stackLength -= 1;
 			System.out.println(removedItem);		}
 		
 		catch(NullPointerException e) {
@@ -39,6 +56,7 @@ public class Stack {
 				removedItem = "o item " + Integer.toString(this.stackItem) +" was removed, empty stack";
 				this.stackItem = (Integer) null;
 				this.belowStack = null;		
+				this.stackLength -= 1;
 				System.out.println(removedItem);				
 			}
 			catch(NullPointerException f) {
@@ -48,14 +66,21 @@ public class Stack {
 		}
 	}	
 	
+	public int rangeStack() {
+		/**
+		 * return range stack
+		 */
+		return this.stackLength;
+	}	
+	
 	public void showStack() {
 		/**
 		 * show all items on stack
 		 */
 		Stack no = this;
-		while (no.belowStack != null) {
-			System.out.println(no.stackItem);
+		while (no != null){
+			System.out.println("item" + no.stackItem);
 			no = no.belowStack;
-		}			
+		}
 	}
 }
