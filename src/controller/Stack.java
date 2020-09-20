@@ -8,7 +8,7 @@ public class Stack {
 	 */		
 	private int stackItem;
 	private Stack belowStack;	
-	private int stackLength;
+	static private int stackLength;
 
 	public Stack() {
 		/**
@@ -81,7 +81,7 @@ public class Stack {
 		 */
 		Stack no = this;
 		while (no != null){
-			System.out.println("item" + no.stackItem);
+			System.out.println("item" + no.stackItem +"  "+no.stackLength);
 			no = no.belowStack;
 		}
 	}
