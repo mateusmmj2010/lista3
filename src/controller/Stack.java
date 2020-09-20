@@ -1,6 +1,9 @@
 package controller;
 
 public class Stack {
+	/**
+	 *  this class implements a stack based on dynamic memory allocation
+	 */
 	
 	private int stackItem;
 	private Stack belowStack;
@@ -24,23 +27,23 @@ public class Stack {
 		/**
 		 * remove item from stack
 		 */
-		String itemRemovido;
+		String removedItem;
 		try {
-			itemRemovido = "o item " + Integer.toString(this.stackItem) + " foi removido";
+			removedItem = " item " + Integer.toString(this.stackItem) + " was removed";
 			this.stackItem = this.belowStack.stackItem;
 			this.belowStack  =this.belowStack.belowStack;
-			System.out.println(itemRemovido);		}
+			System.out.println(removedItem);		}
 		
 		catch(NullPointerException e) {
 			try {
-				itemRemovido = "o item " + Integer.toString(this.stackItem) +" foi removido\nLista Vazia";
+				removedItem = "o item " + Integer.toString(this.stackItem) +" was removed, empty stack";
 				this.stackItem = (Integer) null;
 				this.belowStack = null;		
-				System.out.println(itemRemovido);				
+				System.out.println(removedItem);				
 			}
 			catch(NullPointerException f) {
-				itemRemovido = "operação inválida, a lista esta vazia";	
-				System.out.println(itemRemovido);
+				removedItem = "invalid operation, empty stack";	
+				System.out.println(removedItem);
 			}						
 		}
 	}	
