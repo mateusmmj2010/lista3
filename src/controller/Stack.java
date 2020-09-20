@@ -49,7 +49,7 @@ public class Stack {
 		try {
 			removedItem = " item " + Integer.toString(this.stackItem) + " was removed";
 			this.stackItem = this.belowStack.stackItem;
-			this.belowStack  =this.belowStack.belowStack;
+			this.belowStack  = this.belowStack.belowStack;
 			this.stackLength -= 1;
 			System.out.println(removedItem);		}
 		

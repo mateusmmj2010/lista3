@@ -3,6 +3,7 @@ import controller.Stack;
 
 public class main {	
 	public static void main(String[] args) {
-		Stack novo = new Stack(); //test stack	
+		Stack newStack = new Stack(); //test stack	
+		Queue newQueue = new Queue(); //test queue
 	}
 }
