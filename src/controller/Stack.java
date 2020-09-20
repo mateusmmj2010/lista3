@@ -68,6 +68,25 @@ public class Stack {
 		}
 	}	
 	
+	public boolean emptyStack() {
+		/**
+		 * return true if stack is empty
+		 */
+		if (this.rangeStack() == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public int topStack() {
+		/**
+		 * return stack's top element
+		 */
+		return this.stackItem;
+	}
+	
 	public int rangeStack() {
 		/**
 		 * return range stack
