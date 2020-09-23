@@ -1,7 +1,9 @@
 package controller;
 
 public class Queue {
-	
+	/**
+	 *  FALTA DOCUMENTAR A CLASSE E SEGUIR OS PADRÕES
+	 */	
 	private Queue firstItem, lastItem;
 	private Queue prevItem, nextItem;
 	private int numeroItem, lengthQueue;
@@ -32,9 +34,10 @@ public class Queue {
 	public void dequeue() {
 		try {
 			this.firstItem = this.firstItem.nextItem;
+			this.firstItem.nextItem = null;
 			lengthQueue--;
 		} catch (NullPointerException e) {
-			System.out.println("impossivel eliminar mais elementos, a lista esta vazia");
+			System.out.println("impossivel eliminar elementos, a fila esta vazia");
 		}
 	}	
 	
