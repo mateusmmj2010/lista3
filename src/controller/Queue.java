@@ -1,54 +1,83 @@
 package controller;
 
 public class Queue {
-	/**
-	 * this class implements a Queue based on dynamic memory alocation
-	 */
-	private int queueItem;
-	private Queue queuePreviosItem, queueNextItem;
-	static private int queueLength = 0;
-	static private Queue queueFirstItem, queueLastItem;
 	
-	public Queue(){
-		this.queueFirstItem = this;		
-		this.queueLastItem = this;	
-		this.queuePreviosItem = null;
-		this.queueNextItem = null;			
-	}
-
-	public Queue(int queueItem){
-		this.queueFirstItem = this;
-		this.queueLastItem = this;	
-		this.queueItem = queueItem;
-		this.queuePreviosItem = null;
-		this.queueNextItem = null;		
-	}
+	private Queue firstItem, lastItem;
+	private Queue prevItem, nextItem;
+	private int numeroItem, lengthQueue;
 	
-	public void enqueue(int item, String param){
-		switch (param){
-			case "inicio":
-				Queue noF = this.queueFirstItem;
-				noF.queuePreviosItem = this.queueFirstItem;
-				this.queueFirstItem.queueItem = item;
-				this.queueFirstItem.queueNextItem = noF;
-				this.queueFirstItem.queuePreviosItem = null;
-				System.out.print("certo");
-				break;
-			
-			case "final":
-				Queue noL = this.queueLastItem;
-				noL.queueNextItem = this.queueLastItem;
-				this.queueLastItem.queueItem = item;
-				this.queueLastItem.queuePreviosItem = noL;
-				this.queueLastItem.queueNextItem = null;				
-				break;
-			
-			default:
-				System.out.print("invalide method");
-				break;
-				
+	public Queue() {
+		super();			
+	}	
+	
+	public void enqueue (int item) {
+		Queue no = new Queue();
+		no.numeroItem = item;	
+		if (firstItem == null) {	
+			this.firstItem = no;
+			this.lastItem = no;
+			lengthQueue++;
 		}
-		
+		else {
+			Queue aux = new Queue();
+			aux = this.lastItem;
+			aux.nextItem = no;
+			this.lastItem = no;
+			this.lastItem.prevItem = aux;			
+			lengthQueue++;
+		}
 	}
 	
+	
+	public void dequeue() {
+		try {
+			this.firstItem = this.firstItem.nextItem;
+			lengthQueue--;
+		} catch (NullPointerException e) {
+			System.out.println("impossivel eliminar mais elementos, a lista esta vazia");
+		}
+	}	
+	
+	
+	public void showQueue(String param) {
+		
+		switch(param) {
+		
+		case "all":
+			try {
+				Queue aux = this.firstItem;
+				do {
+					System.out.println(aux.numeroItem);
+					aux = aux.nextItem;
+				} while (aux != null);	
+			} catch (NullPointerException e) {
+				System.out.println("fila vazia");
+			}
+			break;
+		
+		case "last":
+			try {
+				System.out.println("last item: "+ this.lastItem.numeroItem);
+			} catch (NullPointerException e) {
+				System.out.println("fila vazia");
+			}
+			break;
+		
+		case "first":
+			try {
+				System.out.println("first item: "+ this.firstItem.numeroItem);
+			} catch (NullPointerException e) {
+				System.out.println("fila vazia");
+			}
+			break;
+		
+		case "length":
+			System.out.println("Length Queue: "+ this.lengthQueue);
+			break;
+			
+		default:
+			System.out.println("opção inválida");
+			break;			
+		}				
+	}	
 }
