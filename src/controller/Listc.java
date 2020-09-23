@@ -1,6 +1,9 @@
 package controller;
 
 public class Listc {
+	/**
+	 *  FALTA DOCUMENTAR CLASSE
+	 */
 	
 	private Listc firstItem, lastItem;
 	private Listc prevItem, nextItem;
@@ -44,7 +47,7 @@ public class Listc {
 		Listc no = new Listc();
 		no.temperatura = value;
 		
-		if (this.length < 2 ) {
+		if (this.length < 1 || position == this.length ) {
 			appendList(value);
 		}
 		
@@ -54,11 +57,7 @@ public class Listc {
 		
 		else {
 			
-			if (position == this.length) {
-				appendList(value);
-			}
-			
-			else if (position == 0) {
+			if (position == 0) {
 				Listc noA = new Listc();
 				noA.temperatura = value;	
 				
@@ -90,13 +89,10 @@ public class Listc {
 					else {
 						auxB ++;
 						auxA = auxA.nextItem;
-					}
-				
-				}
-				
+					}				
+				}				
 			}
-		}
-		
+		}		
 	}
 	
 	
