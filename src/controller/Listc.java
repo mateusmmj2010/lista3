@@ -4,7 +4,7 @@ public class Listc {
 	/**
 	 *  FALTA DOCUMENTAR CLASSE
 	 */	
-	private Listc firstItem, lastItem;
+	public Listc firstItem, lastItem;
 	private Listc prevItem, nextItem;
 	private double temperatura;
 	private int length = 0;
@@ -15,7 +15,7 @@ public class Listc {
 	
 	public boolean emptyList() {
 		/**
-		 *  this methods retunrs TRUE if list if first item is null
+		 *  this methods returns TRUE if list if first item is null
 		 */
 		try {
 			if (firstItem == null) {
@@ -63,6 +63,31 @@ public class Listc {
 		}
 	}
 	
+	
+	public void removeList(int position) {
+
+		try {
+			if (this.length < 1 || position > this.length){
+				System.out.println("remoção inválida");
+			}
+	
+			else if (position == 0){
+				popFirstList();
+			}
+	
+			else if (position == this.length-1){
+				popList();
+			}
+	
+			else{
+				removePosition(position, 0, this.firstItem);
+			}
+		} catch (Exception e){
+			System.out.println("remoção inválida");
+		}
+		
+	}
+	
 	public void insertInicio(Listc no) {
 		/**
 		 *  this methods insert elements in indice 0
@@ -85,7 +110,7 @@ public class Listc {
 		 * this methods insert element in indice != 0 && != list.length
 		 */
 		try {
-			if (position == contador) {
+			if (position-1 == contador) {
 				no.prevItem = itemCompare.prevItem;
 				no.nextItem = itemCompare;
 				no.nextItem.prevItem = no;
@@ -99,6 +124,24 @@ public class Listc {
 			System.out.println("inclusão inválida");
 		}
 	}
+	
+	public void removePosition(int position, int contador, Listc itemCompare) {
+		try {
+			if(position == contador) {				
+				itemCompare.nextItem.prevItem = itemCompare.prevItem;
+				itemCompare.prevItem.nextItem = itemCompare.nextItem;
+				itemCompare = null;
+				this.length --;
+			}
+			else {
+				System.out.println("arqui" + position + contador);
+				removePosition(position, contador+1,itemCompare.nextItem);
+			}
+		} catch (Exception e) {
+			System.out.println("remoção inválida");
+		}
+	}
+	
 	
 	public void appendList (double temp) {
 		/**
