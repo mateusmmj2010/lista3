@@ -2,7 +2,7 @@ package controller;
 
 public class Listc {
 	/**
-	 *  FALTA DOCUMENTAR CLASSE
+	 *  FALTA DOCUMENTAR CLASSE - TEMPERATURA - EXERCICIO 2
 	 */	
 	public Listc firstItem, lastItem;
 	private Listc prevItem, nextItem;
