@@ -1,15 +1,16 @@
 package controller;
 
-public class Listc {
+public class ListAlumns {
 	/**
-	 *  FALTA DOCUMENTAR CLASSE - TEMPERATURA - EXERCICIO 2
+	 *  FALTA DOCUMENTAR CLASSE - ALUNOS - EXERCICIO 3
 	 */	
-	public static Listc firstItem, lastItem;
-	private Listc prevItem, nextItem;
-	private double temperatura;
+	public ListAlumns firstItem, lastItem;
+	private ListAlumns prevItem, nextItem;
+	private int RaAlumn;
+	private String nome, turma, semestre;
 	private int length = 0;
 	
-	public Listc() {
+	public ListAlumns() {
 		super();
 	}
 	
@@ -31,18 +32,20 @@ public class Listc {
 	}	
 	
 
-	public void inserList(double value, int position) {
+	public void inserList(int RaAlumn, String nome, String turma, String semestre, int position) {
 		/**
 		 *  this methods insert a element acording a indice
 		 */
 		try {		
-			Listc no = new Listc();
-			no.temperatura = value;
+			ListAlumns no = new ListAlumns();
+			no.RaAlumn = RaAlumn;
+			no.nome = nome;
+			no.turma = turma;
+			no.semestre = semestre;			
 		
-			if (this.length < 1 && position >= 0 || position == this.length) {
-				appendList(value);
-			}
-		
+			if (this.length < 1 && position == this.length && position >= 0 ) {
+				appendList(no);
+			}		
 			
 			else if (position > this.length || position < 0) {
 				System.out.println("inserção inválida, posição inexistente");
@@ -55,11 +58,11 @@ public class Listc {
 				}
 
 				else {				
-					insertPosition(value, position, 0, no, this.firstItem);	
+					insertPosition(position, 0, no, this.firstItem);	
 				}
 			}		
 		} catch (Exception e) {
-			System.out.println("inclusão inválida");
+			System.out.println("inclusão inválida A");
 		}
 	}
 	
@@ -88,24 +91,24 @@ public class Listc {
 		
 	}
 	
-	public void insertInicio(Listc no) {
+	public void insertInicio(ListAlumns aluno) {
 		/**
 		 *  this methods insert elements in indice 0
 		 */
 		try {
-			Listc auxA = new Listc();
+			ListAlumns auxA = new ListAlumns();
 			auxA = this.firstItem;
 			auxA.prevItem = this.firstItem ;
-			this.firstItem = no;
+			this.firstItem = aluno;
 			this.firstItem.nextItem = auxA;
 			this.firstItem.prevItem = null;			
 			this.length++;
 		} catch (Exception e) {
-			System.out.println("inclusão inválida");
+			System.out.println("inclusão inválida B");
 		}
 	}	
 	
-	public void insertPosition(double value, int position, int contador, Listc no, Listc itemCompare) {	
+	public void insertPosition(int position, int contador, ListAlumns no, ListAlumns itemCompare) {	
 		/**
 		 * this methods insert element in indice != 0 && != list.length
 		 */
@@ -118,14 +121,14 @@ public class Listc {
 				this.length ++;		
 			}
 			else {
-				insertPosition(value, position, contador+1,no, itemCompare.nextItem);
+				insertPosition(position, contador+1,no, itemCompare.nextItem);
 			}		
 		} catch(Exception e) {
-			System.out.println("inclusão inválida");
+			System.out.println("inclusão inválida C");
 		}
 	}
 	
-	public void removePosition(int position, int contador, Listc itemCompare) {
+	public void removePosition(int position, int contador, ListAlumns itemCompare) {
 		try {
 			if(position == contador) {				
 				itemCompare.nextItem.prevItem = itemCompare.prevItem;
@@ -134,7 +137,7 @@ public class Listc {
 				this.length --;
 			}
 			else {
-				System.out.println("arqui" + position + contador);
+				System.out.println("aqui" + position + contador);
 				removePosition(position, contador+1,itemCompare.nextItem);
 			}
 		} catch (Exception e) {
@@ -143,24 +146,21 @@ public class Listc {
 	}
 	
 	
-	public void appendList (double temp) {
+	public void appendList (ListAlumns aluno) {
 		/**
 		 * tis methods add item on final of list
 		 */
 		try {
-			Listc no = new Listc();
-			no.temperatura = temp;
-		
 			if (this.firstItem == null) {
-				this.firstItem = no;
-				this.lastItem = no;		
+				this.firstItem = aluno;
+				this.lastItem = aluno;		
 				this.length ++;
 			}
 			else {
-				Listc aux = new Listc();
+				ListAlumns aux = new ListAlumns();
 				aux = this.lastItem;
-				aux.nextItem = no;
-				this.lastItem = no;
+				aux.nextItem = aluno;
+				this.lastItem = aluno;
 				this.lastItem.prevItem = aux;
 				this.length ++;
 			}		
@@ -209,9 +209,9 @@ public class Listc {
 		 * this methods shows all items on list
 		 */
 		try {
-			Listc aux = this.firstItem;
+			ListAlumns aux = this.firstItem;
 			do {
-				System.out.println("item "+aux.temperatura);
+				System.out.println("nome "+aux.nome+" ra "+aux.RaAlumn+" sala "+aux.turma+" semeste "+aux.semestre);
 				aux = aux.nextItem;
 			} while (aux != null);	
 			System.out.print(length);
